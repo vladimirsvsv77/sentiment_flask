@@ -1,0 +1,46 @@
+<!doctype html>
+<head>
+    <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+
+<title>Sentiment Demo</title>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div style="margin: 10% 30%">
+<form action="{{ url_for('index_page') }}" method=post>
+    <dl>
+        <h2 class="uk-heading-bullet">Введите/вставьте пример отзыва: </h2><br>
+        <dd><textarea class="uk-textarea" name=text rows=5 cols=40>{{ text }}</textarea><br><br>
+        <dd><button class="uk-button uk-button-primary uk-button-large" type=submit >Оценить</button>
+    </dl>
+</form>
+
+<br>Sentiment prediction:<br>
+    <span id="pred">
+        <b>{{ prediction_message }}</b>
+    </span>
+</div>
+</body>
+
+<script>
+$( document ).ready(function() {
+        if(document.getElementById('pred').textContent.includes("positive")){
+            document.getElementById('pred').className = 'uk-text-success';
+        }
+        if(document.getElementById('pred').textContent.includes("negative")){
+            document.getElementById('pred').className = 'uk-text-danger';
+        }
+});
+
+
+</script>
+
